@@ -9,11 +9,12 @@ pip 22.0.3 from
 C:\Users\midek\AppData\Local\Programs\Python\Python39\lib\site-packages\pip (python 3.9)
 
 Suivez les instructions suivantes pour installer l'ancienne version de python sur
-la plateforme  python docs
+la plateforme  [python docs](https://www.python.org/downloads/windows/#getting-and-installing-the-latest-version-of-python)
+
 
   ##Dépendances de PIP
 
-Pour installer les dépendances, ouvrez le dossier /Documentation et exécuter la 
+Pour installer les dépendances, ouvrez le dossier /'Documentation' et exécuter la 
 commande suivante:
 
         pip install -r requirements.txt
@@ -21,15 +22,15 @@ commande suivante:
         pip3 install -r requirements.txt
 
 Nous passons donc à l'installation de tous les packages se trouvant dans le 
-fichier requirements.txt.
+fichier 'requirements.txt'.
 
 clé de Dépendances
 
-    Flask est un petit framework web Python léger, qui fournit des outils et des         fonctionnalités utiles qui facilitent la création d’applications web en Python.
+    - [Flask](http://flask.pocoo.org/) est un petit framework web Python léger, qui fournit des outils et des fonctionnalités utiles qui facilitent la création d’applications web en Python.
 
-    SQLAlchemy est un toolkit open source SQL et un mapping objet-relationnel écrit en Python et publié sous licence MIT. SQLAlchemy a opté pour l'utilisation du pattern Data Mapper plutôt que l'active record utilisés par de nombreux autres ORM
+    - [SQLAlchemy](https://www.sqlalchemy.org/)est un toolkit open source SQL et un mapping objet-relationnel écrit en Python et publié sous licence MIT. SQLAlchemy a opté pour l'utilisation du pattern Data Mapper plutôt que l'active record utilisés par de nombreux autres ORM
 
-    Flask-CORS is the extension we'll use to handle cross origin requests from our frontend server.
+ - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server.
 # Démarrer le serveur
 
 Pour démarrer le serveur sur Linux ou Mac, executez:
@@ -57,7 +58,7 @@ L'API vous renvoie 4 types d'erreur: . 400: Bad request ou ressource non disponi
 . ## OBTENIR/livres
 
       GENERAL:
-           Cet endpoint retourne la liste des objets livres, la valeur du succès et le        total des livres. 
+           Cet endpoint retourne la liste des objets livres, la valeur du succès  
 
     
       EXEMPLE: curl http://localhost:5000/livres
@@ -168,6 +169,43 @@ L'API vous renvoie 4 types d'erreur: . 400: Bad request ou ressource non disponi
               "total_books": 4
           }
           
+. ## OBTENIR/livres
+
+          GENERAL:
+               Cet endpoint retourne la liste des objets livres, la valeur du succès  
+
+
+          EXEMPLE: curl http://localhost:5000/livres  
+       
+
+                    {
+                "categories":[
+                              {
+                                "id_cat": 1, 
+                                "libelle_cat": "Histoire"
+                              }, 
+                              {
+                                "id_cat": 3, 
+                                "libelle_cat": "SVT"
+                              }, 
+                              {
+                                "id_cat": 4, 
+                                "libelle_cat": "Geographie"
+                              }, 
+                              {
+                                "id_cat": 2, 
+                                "libelle_cat": "Roman_policiers"
+                              }, 
+                              {
+                                "id_cat": 5, 
+                                "libelle_cat": "Mathematiques"
+                              }, 
+                              {
+                                "id_cat": 6, 
+                                "libelle_cat": "Science_Physique"
+                              }
+                             ]
+                           }
           
 .##GET/livres(id)
 
@@ -187,14 +225,25 @@ L'API vous renvoie 4 types d'erreur: . 400: Bad request ou ressource non disponi
                 "titre": "le crime de lorient express"
               }          
 
+.##GET/categories(id)
 
+            GENERAL: 
+                Cet endpoint permet de récupérer les informations d'un livre particulier s'il existe par le biais de l'ID.  
+
+            EXEMPLE: http://localhost:5000/categories/2
+          
+
+                {
+                  "id_cat": 2, 
+                  "libelle_cat": "Roman_policiers"
+                }
 
 . ## SUPPRIMER/livres (id)
 
         GENERAL:
-            Supprimer un element si l'ID existe. Retourne l'ID du livre supprimé, la    valeur du succès et le nouveau total.
+            Supprimer un element si l'ID existe. Retourne l'ID du livre supprimé, la valeur du succès 
 
-            EXEMPLE: curl -X DELETE http://localhost:5000/livres/4
+            EXEMPLE: curl -X DELETE http://localhost:5000/livres/13
 
 
           {
@@ -202,6 +251,20 @@ L'API vous renvoie 4 types d'erreur: . 400: Bad request ou ressource non disponi
               "success": true
           }
           
+ 
+ 
+ . ## SUPPRIMER/categories(id)
+
+        GENERAL:
+            Supprimer un element si l'ID existe. Retourne l'ID du categories supprimé, la valeur du succès 
+
+            EXEMPLE: curl -X DELETE http://localhost:5000/categories/2
+
+
+          {
+              "delete succefully": 2,
+              "success": true
+          }
 
 . ##PATCH/categories(id_cat) 
 

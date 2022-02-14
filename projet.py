@@ -165,13 +165,16 @@ def get_categori(id_cat):
 def update_categorie(id_cat):
     body = request.get_json()
     categorie = Categorie.query.get(id_cat)
-    if 'libelle_cat' in body:
-        categorie.libelle_cat = body['libelle_cat']
-    categorie.update()
-    return jsonify({
-        'success modify': True,
-        'categorie': categorie.format(),
-    })        
+    try:
+        if 'libelle_cat' in body:
+            categorie.libelle_cat = body['libelle_cat']
+        categorie.update()
+        return jsonify({
+            'success modify': True,
+            'categorie': categorie.format(),
+        })
+    except:
+        abort(404)
 #################################################################
 #
 #              modifier les informations du livre
@@ -181,15 +184,18 @@ def update_categorie(id_cat):
 def update_livre(id):
     body = request.get_json()
     livre = Livre.query.get(id)
-    if 'isbn' in body and 'titre' in body and 'auteur' in body and 'editeur' in body and 'date_pub' in body:
-        livre.isbn = body['isbn']
-        livre.titre = body['titre']
-        livre.auteur = body['auteur']
-        livre.editeur = body['editeur']
-        livre.date_pub = body['date_pub']
-    livre.update()
-    return jsonify({
-        'success modify': True,
-        'livre': livre.format(),
-    })
+    try:
+        if 'isbn' in body and 'titre' in body and 'auteur' in body and 'editeur' in body and 'date_pub' in body:
+            livre.isbn = body['isbn']
+            livre.titre = body['titre']
+            livre.auteur = body['auteur']
+            livre.editeur = body['editeur']
+            livre.date_pub = body['date_pub']
+        livre.update()
+        return jsonify({
+            'success modify': True,
+            'livre': livre.format(),
+        })
+    except:
+        abort(404)
 
